@@ -1,0 +1,6 @@
+{% macro render_todo(todo, index) %}
+    <tr>
+        <th scope="row">{{index}}</th>
+        <td> {{todo.to_dict().description}}</th>
+    </tr>  
+{% endmacro %}
