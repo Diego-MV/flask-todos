@@ -1,6 +1,6 @@
 from flask import render_template, request, flash, url_for, session, redirect
 from . import auth
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required, current_user
 from app.forms import Login_Form, Signup_Form
 from app.firestore_service import get_user, user_put
 from app.models import UserData, UserModel
@@ -68,7 +68,16 @@ def signup():
             flash('The user exist', 'danger')
 
     return render_template('auth/signup.html', **context)
-   
-@auth.route('/account')
-def account():
-    return render_template('auth/account.html')
+
+@auth.route('/profile')
+@login_required
+def profile():
+    username = current_user.id
+    user_doc = get_user(username)
+    email = user_doc.to_dict()['email']
+    context = {
+        'username': username,
+        'email': email
+    }
+
+    return render_template('auth/profile.html',**context)
