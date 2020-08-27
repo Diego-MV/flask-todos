@@ -25,15 +25,12 @@ def index():
 @login_required
 def hello():
     username = current_user.id
-    
+    email = current_user.email
     context = {
         'todos': get_todos(username),
         'username': username,
+        'email': email
     }
-    users = get_users()
-    for user in users:
-        print(user.id)
-        print(user.to_dict()['password'])
     return render_template('hello.html', **context)
 
 if __name__ == '__main__':

@@ -2,12 +2,12 @@
 
 {% block title %}
   {{super()}}
-  Bienvenido
+  Login
 {% endblock %}
 
 {% block content %}
 <div class="container w-50 p-5"> 
-    <h1 class="p-4 h1">Iniciar sesión</h1>
+    <h1 class="p-4 h1">Login</h1>
     <form action="{{url_for('auth.login')}}" method="POST">
       <div class="form-group">
         {{login_form.username.label}}
