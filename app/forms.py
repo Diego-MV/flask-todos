@@ -13,4 +13,6 @@ class Signup_Form(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
-
+class TodoForm(FlaskForm):
+    description= StringField('Destription', validators=[DataRequired()])
+    submit = SubmitField('Create')

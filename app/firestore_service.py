@@ -21,3 +21,7 @@ def user_put(user_data):
     user_ref = db.collection('users')\
       .document(user_data.username)
     user_ref.set({'password': user_data.password, 'email': user_data.email})
+
+def todo_put(user_id, description):
+    todos_collection_ref = db.collection('users').document(user_id).collection('todos')
+    todos_collection_ref.add({'description': description})
